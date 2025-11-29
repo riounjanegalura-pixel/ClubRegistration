@@ -38,5 +38,10 @@ namespace ClubRegistration
 
             dataGridView1.DataSource = clubRegistrationQuery.bindingSource;
         }
+
+        private void FrmClubRegistration_Load(object sender, EventArgs e)
+        {
+            RefreshListOfClubMembers();
+        }
     }
 }
