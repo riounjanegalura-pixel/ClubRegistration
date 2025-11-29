@@ -26,5 +26,15 @@ namespace ClubRegistration
         public string Gender { get; set; }
         public string Program { get; set; }
         public int Age { get; set; }
+
+    public ClubRegistrationQuery()
+        {
+            connectionString = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\clubregistration07lab\\ClubRegistration\\ClubRegistration\\ClubDB.mdf;Integrated Security=True";
+
+            sqlConnect = new SqlConnection(connectionString);
+
+            dataTable = new DataTable();
+            bindingSource = new BindingSource();
+        }
     }
 }
