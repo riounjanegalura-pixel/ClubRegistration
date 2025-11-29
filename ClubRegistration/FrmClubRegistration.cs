@@ -31,5 +31,12 @@ namespace ClubRegistration
             InitializeComponent();
             clubRegistrationQuery = new ClubRegistrationQuery();
         }
+
+        private void RefreshListOfClubMembers()
+        {
+            clubRegistrationQuery.DisplayList();
+
+            dataGridView1.DataSource = clubRegistrationQuery.bindingSource;
+        }
     }
 }
