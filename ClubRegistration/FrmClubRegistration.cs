@@ -95,6 +95,8 @@ namespace ClubRegistration
             {
                 MessageBox.Show($"Database Error: {ex.Message}", "Registration Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+
+            RefreshListOfClubMembers();
         }
 
         private void ClearInputFields()
