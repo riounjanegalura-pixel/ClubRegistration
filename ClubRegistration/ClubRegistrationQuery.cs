@@ -49,5 +49,23 @@ namespace ClubRegistration
 
             return true;
         }
+
+        public bool RegisterStudent(int ID, long StudentID, string FirstName, string MiddleName, string LastName, int Age, string Gender, string Program)
+        {
+            sqlCommand = new SqlCommand("INSERT INTO ClubMembers VALUES(@ID, @StudentID, @FirstName, @MiddleName, @LastName, @Age, @Gender, @Program)", sqlConnect);
+            sqlCommand.Parameters.Add("@ID", SqlDbType.Int).Value = ID;
+            sqlCommand.Parameters.Add("@RegistrationID", SqlDbType.BigInt).Value = StudentID;
+            sqlCommand.Parameters.Add("@StudentID", SqlDbType.VarChar).Value = StudentID;
+            sqlCommand.Parameters.Add("@FirstName", SqlDbType.VarChar).Value = FirstName;
+            sqlCommand.Parameters.Add("@MiddleName", SqlDbType.VarChar).Value = MiddleName;
+            sqlCommand.Parameters.Add("@LastName", SqlDbType.VarChar).Value = LastName;
+            sqlCommand.Parameters.Add("@Age", SqlDbType.Int).Value = Age;
+            sqlCommand.Parameters.Add("@Gender", SqlDbType.VarChar).Value = Gender;
+            sqlCommand.Parameters.Add("@Program", SqlDbType.VarChar).Value = Program;
+            sqlConnect.Open();
+            sqlCommand.ExecuteNonQuery();
+            sqlConnect.Close();
+            return true;
+        }
     }
 }
