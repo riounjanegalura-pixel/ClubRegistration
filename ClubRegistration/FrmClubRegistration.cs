@@ -43,5 +43,11 @@ namespace ClubRegistration
         {
             RefreshListOfClubMembers();
         }
+
+        private int RegistrationID()
+        {
+            count++;
+            return count;
+        }
     }
 }
