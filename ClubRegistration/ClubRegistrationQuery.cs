@@ -36,5 +36,18 @@ namespace ClubRegistration
             dataTable = new DataTable();
             bindingSource = new BindingSource();
         }
+
+        public bool DisplayList()
+        {
+            string ViewClubMembers = "SELECT StudentId, FirstName, MiddleName, LastName, Age, Gender, Program FROM ClubMembers";
+
+            sqlAdapter = new SqlDataAdapter(ViewClubMembers, sqlConnect);
+
+            dataTable.Clear();
+            sqlAdapter.Fill(dataTable);
+            bindingSource.DataSource = dataTable;
+
+            return true;
+        }
     }
 }
