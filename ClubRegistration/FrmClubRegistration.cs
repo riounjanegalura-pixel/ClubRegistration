@@ -49,5 +49,63 @@ namespace ClubRegistration
             count++;
             return count;
         }
+
+        private void btnRegister_Click(object sender, EventArgs e)
+        {
+            ID = RegistrationID();
+
+            if (long.TryParse(txtStudentId.Text, out long studentIdValue))
+            {
+                StudentId = studentIdValue;
+            }
+            else
+            {
+                MessageBox.Show("Invalid Student ID format. Please enter a number.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            FirstName = txtFirstName.Text;
+            MiddleName = txtMiddleName.Text;
+            LastName = txtLastName.Text;
+
+            if (int.TryParse(txtAge.Text, out int ageValue))
+            {
+                Age = ageValue;
+            }
+            else
+            {
+                MessageBox.Show("Invalid Age format. Please enter a number.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return; 
+            }
+
+            Gender = cbGender.Text;
+            Program = cbProgram.Text;
+
+            try
+            {
+                clubRegistrationQuery.RegisterStudent(ID, StudentId, FirstName, MiddleName, LastName, Age, Gender, Program);
+
+                MessageBox.Show("Student registered successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                RefreshListOfClubMembers();
+
+                ClearInputFields();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Database Error: {ex.Message}", "Registration Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void ClearInputFields()
+        {
+            txtStudentId.Clear();
+            txtFirstName.Clear();
+            txtMiddleName.Clear();
+            txtLastName.Clear();
+            txtAge.Clear();
+            cbGender.SelectedIndex = -1;
+            cbProgram.SelectedIndex = -1; 
+        }
     }
 }
